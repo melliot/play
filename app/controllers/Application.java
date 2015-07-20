@@ -1,5 +1,6 @@
 package controllers;
 
+import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Model;
 import models.Person;
 import play.*;
@@ -19,14 +20,24 @@ public class Application extends Controller {
     }
 
     public Result addPerson() {
-
+        Ebean.find(Person.class).where().eq("name", "Alexis");
         Person person = Form.form(Person.class).bindFromRequest().get();
         person.save();
         return redirect(routes.Application.index());
     }
 
     public Result getPerson() {
-        List<Person> personList = new Model.Finder(String.class, Person.class).all();
+        List<Person> personList = Ebean.find(Person.class).findList();
         return ok(toJson(personList));
     }
+
+    public Result deletePerson() {
+
+        Person person = Ebean.find(Person.class).where().eq("name", "Alexis").findUnique();
+
+        Ebean.delete(person);
+
+        return redirect(routes.Application.index());
+    }
+
 }

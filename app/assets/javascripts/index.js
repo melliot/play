@@ -9,9 +9,4 @@ function httpGet(theUrl)
 }
 var persons = httpGet("/getperson");
 
-var result = $.parseJSON(persons);
 
-$.each(result, function(k, v)
-{
-    console.log(k + ' Is ' + v);
-});
