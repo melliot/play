@@ -12,13 +12,8 @@ public class Person extends Model {
     @Id
     public String id;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String name;
 
     public String getId() {
         return id;
@@ -28,9 +23,12 @@ public class Person extends Model {
         this.id = id;
     }
 
-    public String name;
+    public String getName() {
+        return name;
+    }
 
-
-
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }
