@@ -20,7 +20,6 @@ public class Application extends Controller {
     }
 
     public Result addPerson() {
-        Ebean.find(Person.class).where().eq("name", "Alexis");
         Person person = Form.form(Person.class).bindFromRequest().get();
         person.save();
         return redirect(routes.Application.index());
@@ -33,7 +32,9 @@ public class Application extends Controller {
 
     public Result deletePerson() {
 
-        Person person = Ebean.find(Person.class).where().eq("name", "Alexis").findUnique();
+        String name = Form.form(String.class).bindFromRequest().get();
+
+        Person person = Ebean.find(Person.class).where().eq("name", name).findUnique();
 
         Ebean.delete(person);
 
