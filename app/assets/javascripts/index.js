@@ -1,17 +1,17 @@
 
-function httpGet(theUrl)
+function get(url)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", theUrl, false);
+    xmlHttp.open("GET", url, false);
     xmlHttp.send();
 
     return xmlHttp.responseText;
 }
-var persons = httpGet("/getperson");
+var persons = get("/getperson");
 
-var result = $.parseJSON(persons);
+var array = JSON.parse(persons);
 
-$.each(result, function(k, v)
-{
-    console.log(k + ' Is ' + v);
+array.forEach(function(object) {
+    console.log(object.name);
+    document.body.innerHTML += "<li>" + object.name;
 });
