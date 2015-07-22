@@ -36,12 +36,25 @@ public class Application extends Controller {
 
     public Result deletePerson() {
 
-        String name = Form.form(String.class).bindFromRequest().get();
+        Person person = Form.form(Person.class).bindFromRequest().get();
 
-        Person person = Ebean.find(Person.class).where().eq("name", name).findUnique();
 
-        Ebean.delete(person);
+        Person delete = Ebean.find(Person.class).where().eq("name", person.getName()).findUnique();
+        if(delete != null) {
+            System.out.println("deleting..." + person.getName());
+            Ebean.delete(delete);
+        }
+        return redirect(routes.Application.index());
+    }
 
+    public Result getEntity() {
+        Person person = Form.form(Person.class).bindFromRequest().get();
+
+        Person entity = Ebean.find(Person.class).where().eq("name", person.getName()).findUnique();
+
+        if(entity != null) {
+            return ok(toJson(entity));
+        }
         return redirect(routes.Application.index());
     }
 

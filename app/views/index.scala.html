@@ -7,17 +7,25 @@
     <ul id="persons"></ul>
 
    <form action="@routes.Application.addPerson()" method="post">
-       <input type="text" name="name">
+       <input type="text" name="name"    value="name">
+       <input type="text" name="number"  value="number">
+       <input type="text" name="address" value="address">
        <button>Save</button>
 
    </form>
 
-    <form action="@routes.Application.deletePerson()" method="get">
+    <form action="@routes.Application.deletePerson()" method="post">
+        <input type="text" name="name" value="name">
         <button>Delete</button>
     </form>
 
     <a href="/getperson">
         <button>GO</button>
     </a>
+
+    <form action="@routes.Application.getEntity()" method="post">
+        <input type="text" name="name" value="name">
+        <button>GetEntity</button>
+    </form>
 
 }

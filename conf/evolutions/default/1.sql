@@ -6,6 +6,8 @@
 create table person (
   id                        varchar(255) not null,
   name                      varchar(255),
+  number                    varchar(255),
+  address                   varchar(255),
   constraint pk_person primary key (id))
 ;
 
